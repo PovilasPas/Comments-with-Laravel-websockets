@@ -18,14 +18,14 @@ use App\Http\Controllers\CommentController;
 
 Route::get('/', [AuthController::class, 'ShowAuthForm'])->name('login')->middleware('guest');
 
-Route::post('/authenticate', [AuthController::class, 'Authenticate']);
+Route::post('/authenticate', [AuthController::class, 'Authenticate'])->middleware('guest');
 
 Route::get('/comments', [CommentController::class, 'ListComments'])->middleware('auth');
 
 Route::get('/comments/next', [CommentController::class, 'ListMoreComments'])->middleware('auth');
 
-Route::post('/comments/add', [CommentController::class, 'AddComment']);
+Route::post('/comments/add', [CommentController::class, 'AddComment'])->middleware('auth');;
 
-Route::post('/comments/vote', [CommentController::class, 'Vote']);
+Route::post('/comments/vote', [CommentController::class, 'Vote'])->middleware('auth');;
 
-Route::post('/logout', [AuthController::class, 'Logout']);
+Route::post('/logout', [AuthController::class, 'Logout'])->middleware('auth');;
